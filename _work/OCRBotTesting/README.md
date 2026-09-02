@@ -1,12 +1,35 @@
 # OCRBotTesting
 
+![Status](https://img.shields.io/badge/status-completed-blue)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
+![Platform](https://img.shields.io/badge/platform-macOS-000000?logo=apple&logoColor=white)
+![OCR](https://img.shields.io/badge/OCR-EasyOCR-orange)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
 Mac App Store 숨은그림찾기 게임용 자동 클릭 봇입니다. 화면 하단의 한국어 단어를 OCR로 읽고, 미리 저장된 좌표로 자동 클릭합니다.
 
 | 항목 | 내용 |
 |------|------|
-| **상태** | 개발 완료 |
+| **상태** | 개발 완료 (로컬) |
 | **유형** | 개인 프로젝트 (학습·테스트 목적) |
 | **플랫폼** | macOS 전용 |
+
+---
+
+## 목차
+
+- [소개](#소개)
+- [주요 기능](#주요-기능)
+- [기술 스택](#기술-스택)
+- [시스템 구조](#시스템-구조)
+- [데이터 저장](#데이터-저장)
+- [외부 API 키 및 필수 기능](#외부-api-키-및-필수-기능)
+- [프로젝트 구조](#프로젝트-구조)
+- [시작하기](#시작하기)
+- [설정값](#설정값-botpy)
+- [보안 · API 키 관리](#보안--api-키-관리)
+- [문제 해결](#문제-해결)
+- [참고](#참고)
 
 ---
 
@@ -32,10 +55,58 @@ EasyOCR로 게임 화면 하단의 한국어 단어를 인식하고, `coord_map.
 | 영역 | 기술 |
 |------|------|
 | **Language** | Python 3.10+ |
-| **OCR** | EasyOCR (한국어) |
+| **OCR** | EasyOCR (한국어, 로컬 모델) |
 | **화면 캡처** | mss |
 | **입력 제어** | pyautogui, pynput |
 | **이미지** | Pillow, numpy |
+
+---
+
+## 시스템 구조
+
+```mermaid
+flowchart LR
+    GAME[게임 화면<br/>단어 바]
+    CAP[mss 화면 캡처]
+    OCR[EasyOCR<br/>한국어 인식]
+    MAP[coord_map.json<br/>단어→좌표]
+    CLICK[pyautogui 클릭]
+
+    GAME --> CAP
+    CAP --> OCR
+    OCR -->|단어 매칭| MAP
+    MAP --> CLICK
+    CLICK --> GAME
+```
+
+---
+
+## 데이터 저장
+
+외부 DB 없이 **로컬 JSON 파일**만 사용합니다.
+
+| 파일 | 내용 | 생성 방법 |
+|------|------|-----------|
+| `coord_map.json` | 단어 → (x, y) 좌표 사전 | `map_coords.py` 실행 |
+
+```mermaid
+flowchart TD
+    A[map_coords.py] -->|35개 아이템 클릭| B[coord_map.json]
+    B --> C[bot.py OCR 매칭]
+```
+
+---
+
+## 외부 API 키 및 필수 기능
+
+| 항목 | 필수 | 용도 | 없을 때 |
+|------|------|------|---------|
+| 외부 API 키 | 해당 없음 | — | — |
+| EasyOCR 모델 | ✅ | 한국어 OCR (로컬 다운로드) | 첫 실행 시 자동 다운로드 |
+| macOS Accessibility | ✅ | 마우스 클릭 제어 | `PermissionError` |
+| macOS Screen Recording | ✅ | 화면 캡처 | 캡처 실패 |
+
+> 네트워크 API 키가 필요 없는 **완전 로컬** 프로젝트입니다. EasyOCR 모델만 최초 1회 인터넷에서 다운로드합니다.
 
 ---
 
@@ -74,12 +145,7 @@ pip install -r requirements.txt
 ### 2. 좌표 매핑 (처음 한 번)
 
 1. `map_coords.py` 상단 `ITEM_NAMES`를 실제 게임 단어로 수정
-2. 실행:
-
-```bash
-python3 map_coords.py
-```
-
+2. `python3 map_coords.py` 실행
 3. 3초 안에 게임 창으로 전환
 4. 안내하는 단어의 아이템을 화면에서 클릭 (35개)
 5. 완료 시 `coord_map.json` 자동 저장 (ESC로 중간 저장 가능)
@@ -117,6 +183,17 @@ python3 bot.py
 | `CLICK_DELAY_MIN/MAX` | `0.3` / `0.8` s | 클릭 간 랜덤 딜레이 |
 | `CLICKS_PER_ROUND` | `26` | 한 라운드 클릭 횟수 |
 | `STARTUP_DELAY` | `3` s | 시작 전 대기 |
+
+---
+
+## 보안 · API 키 관리
+
+| 항목 | 상태 |
+|------|------|
+| 외부 API 키 | 해당 없음 |
+| `.env` 파일 | 사용하지 않음 |
+| 하드코딩 시크릿 | 없음 |
+| Chrome Web Store | 해당 없음 (macOS 로컬 스크립트) |
 
 ---
 

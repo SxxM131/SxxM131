@@ -1,5 +1,11 @@
 # minwonAI
 
+![Status](https://img.shields.io/badge/status-proposal%20complete-purple)
+![Type](https://img.shields.io/badge/type-documentation-blue)
+![AI](https://img.shields.io/badge/AI-Generative%20AI-412991?logo=openai&logoColor=white)
+![Domain](https://img.shields.io/badge/domain-Public%20Administration-green)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
 생성형 AI를 활용한 민원·행정 업무 고도화를 제안하는 종합 제안서 및 관련 자료 저장소입니다.
 
 | 항목 | 내용 |
@@ -7,6 +13,21 @@
 | **상태** | 제안서 완료 |
 | **유형** | 개인 프로젝트 (기획·설계) |
 | **형태** | 코드 없음 — 문서·제안서 중심 |
+
+---
+
+## 목차
+
+- [소개](#소개)
+- [주요 내용](#주요-내용)
+- [제안 아키텍처](#제안-아키텍처)
+- [데이터·시스템 설계 (제안)](#데이터시스템-설계-제안)
+- [외부 API 키 및 필수 기능](#외부-api-키-및-필수-기능)
+- [프로젝트 구조](#프로젝트-구조)
+- [시작하기](#시작하기)
+- [보안 · API 키 관리](#보안--api-키-관리)
+- [특징](#특징)
+- [참고](#참고)
 
 ---
 
@@ -28,14 +49,94 @@ minwonAI는 공공 행정의 칸막이 구조, 분절된 민원 서비스, 안�
 
 ---
 
-## 기술·설계 방향
+## 제안 아키텍처
 
-| 영역 | 제안 내용 |
-|------|-----------|
-| **아키텍처** | 하이브리드 (온프레미스 + 클라우드), 데이터 주권 확보 |
-| **AI** | 생성형 AI, 근거 기반 응답, AI Audit 로그 |
-| **보안** | 개인정보 최소 수집, 권한 통제, 블록체인 감사 추적 |
-| **거버넌스** | Human-in-the-loop, 처리 기한 모니터링, ETA 예측 |
+```mermaid
+flowchart TB
+    subgraph Citizen
+        UI[민원인 단일창구 UI]
+    end
+
+    subgraph AI_Layer
+        CHAT[실행형 AI 상담]
+        ETA[처리 기한·ETA 예측]
+        ALERT[조기 경보·악성 민원 필터]
+    end
+
+    subgraph Admin
+        ADMIN[AI Admin 대시보드]
+        HITL[Human-in-the-loop 검증]
+    end
+
+    subgraph Backend
+        HYB[하이브리드 아키텍처<br/>온프레미스 + 클라우드]
+        AUDIT[블록체인 감사 로그]
+        DB[(행정 데이터<br/>데이터 주권)]
+    end
+
+    UI --> CHAT
+    CHAT --> HYB
+    CHAT --> ETA
+    ALERT --> ADMIN
+    ADMIN --> HITL
+    HYB --> DB
+    HYB --> AUDIT
+```
+
+---
+
+## 데이터·시스템 설계 (제안)
+
+실행 코드는 없으며, 제안서에 기술된 **개념적 데이터 흐름**입니다.
+
+```mermaid
+erDiagram
+  citizens ||--o{ complaints : submits
+  complaints ||--o{ complaint_status : tracks
+  complaints ||--o{ ai_audit_logs : generates
+  admins ||--o{ review_actions : performs
+
+  citizens {
+    string citizen_id PK
+    string contact_minimal
+  }
+  complaints {
+    string complaint_id PK
+    string type
+    string status
+    datetime deadline
+  }
+  ai_audit_logs {
+    string log_id PK
+    string model_version
+    string evidence_ref
+    datetime created_at
+  }
+  review_actions {
+    string action_id PK
+    string admin_id FK
+    string decision
+  }
+```
+
+| 개념 | 설명 |
+|------|------|
+| `complaints` | 민원 접수·처리 상태 (One-Flow) |
+| `ai_audit_logs` | AI 응답 근거·모델 버전 감사 추적 |
+| `review_actions` | Human-in-the-loop 관리자 검증 기록 |
+
+---
+
+## 외부 API 키 및 필수 기능
+
+본 저장소는 **실행 코드가 없으므로** API 키가 필요하지 않습니다. 제안서에서 언급하는 향후 구현 시 고려 사항:
+
+| 구성 요소 | 제안 시 필수 여부 | 용도 |
+|-----------|-------------------|------|
+| 생성형 AI API (온프레미스/전용) | ✅ | 민원 상담·문서 생성 |
+| 정부24·부처 연계 API | ✅ | 신청·접수·발급 One-Flow |
+| 블록체인 감사 노드 | 제안 | AI Audit 로그 불변 저장 |
+| Chrome Web Store | 해당 없음 | 웹·행정 포털 연동 제안 |
 
 ---
 
@@ -52,8 +153,6 @@ minwonAI/
 
 ## 시작하기
 
-### 제안서 읽기
-
 ```bash
 git clone https://github.com/SxxM131/minwonAI.git
 cd minwonAI
@@ -67,6 +166,16 @@ cd minwonAI
 2. **솔루션** — 실행형 AI 단일창구, 상태 추적, 신뢰 설계
 3. **아키텍처** — 하이브리드, AI Admin, 조기 경보
 4. **실행 계획** — 단계별 도입 로드맵
+
+---
+
+## 보안 · API 키 관리
+
+| 항목 | 상태 |
+|------|------|
+| 실행 코드 | 없음 |
+| API 키·시크릿 | 저장소에 포함되지 않음 |
+| `자료/` PDF | 공개 참조 자료 (민감 정보 없음) |
 
 ---
 
