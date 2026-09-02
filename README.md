@@ -1,67 +1,119 @@
 ## 안녕하세요, SxxM131입니다 👋
 
-**AI와 웹 기술로 실생활 문제를 풀어보는 개발자**입니다.  
-주식 분석, 예약 시스템, 복약 안전, 영상 편집, 공공 행정까지 — 아이디어를 직접 만들고 배포해 보며 배워 왔습니다.
+**실생활의 불편함에서 출발해, AI와 웹 기술로 직접 해결책을 만드는 개발자**입니다.  
+OCR·STT·생성형 AI를 하나의 서비스에 엮어 보고, 기획부터 배포·실사용자 확보까지 경험해 왔습니다.
+
+> *"문제를 먼저 느끼고, 기술로 검증하고, 배운 것을 다음 프로젝트에 반영한다."*
 
 ---
 
 ### 💡 관심 분야
 
-- **AI / LLM** — GPT 기반 분석, 요약, 프롬프트 생성
-- **풀스택 웹** — React, Next.js, Spring, Supabase, PostgreSQL
-- **자동화** — OCR, 스케줄링, 영상 처리 파이프라인
+- **생성형 AI 통합** — GPT, DALL-E, Whisper, OCR, STT를 실서비스에 연결
+- **풀스택 웹** — React, Next.js, Spring Boot, PostgreSQL, Supabase
+- **서비스 운영** — Chrome Web Store 출시, API 비용·캐싱·스케줄링 최적화
 
 ---
 
-### 🚀 대표 프로젝트
+### 🚀 주요 프로젝트
 
-#### 📈 [StocKKnock](https://github.com/SxxM131/stockknock) · AI 주식 분석 플랫폼
-국내·해외 주식 실시간 시세, GPT 시장 브리핑, 포트폴리오·가격 알림을 한곳에서 제공하는 투자 도구입니다.
+#### 🎫 [Re:Cord](https://github.com/SxxM131/ReMade) · 공연 티켓 기록 앱 `팀 · 졸업 프로젝트`
 
-#### 📅 [SVS Reservation](https://github.com/SxxM131/wos1234) · 예약·배정 웹앱
-Next.js + Supabase + Vercel로 만든 모바일 퍼스트 예약 시스템. **Min-Cost Max-Flow** 알고리즘으로 공정한 배정을 구현했습니다.
+관람한 공연을 티켓 형식으로 기록하는 풀스택 앱. **기획·백엔드 담당.**  
+OCR 티켓 인식 · STT 후기 녹음 · DALL-E 티켓 이미지 생성 · SNS 공유  
+`Java · Spring Boot · PostgreSQL · Whisper · DALL-E`
 
-#### 💊 [Med](https://github.com/SxxM131/med) · 복약 안전성 확인
-알러지·복용 이력을 바탕으로 안전한 약물을 추천하는 풀스택 웹앱 (React + Spring + PostgreSQL).
+#### ✍️ [Drafty](https://github.com/SxxM131/drafty) · AI 글쓰기 Chrome Extension `개인 · 스토어 출시`
 
-#### 🏨 [HotelBooker](https://github.com/SxxM131/HotelBooker) · 호텔 예약 시스템
-회원 인증, 객실 예약, 결제, 리뷰, 관리자 대시보드까지 갖춘 호텔 운영용 웹 서비스.
+웹페이지 요약(Extract)과 이메일·문장 교정(Enhance). **기획·개발·배포 1인 완주.**  
+Chrome Web Store 등록, **미국·홍콩 등 해외 실사용자** 확보  
+`Chrome Extension · Node.js · OpenAI API`
 
-#### 🎫 [ReMade](https://github.com/SxxM131/ReMade) · 공연 티켓 기록·리뷰
-공연 관람 기록과 리뷰를 관리하는 풀스택 프로젝트 (TypeScript + Java + PostgreSQL).
+#### 💊 [Med](https://github.com/SxxM131/med) · 복약 안전성 확인 `개인 · 배포 완료`
 
-#### 🎬 [clips](https://github.com/SxxM131/clips) · AI 영상 도구
-영상 병합, 바이럴 프롬프트 생성, YouTube 클립 자동 추출을 웹 UI로 제공합니다.
+동생의 항생제 알레르기 불편함에서 출발. 약 성분표 OCR → AI 알레르기 분석 → 대체 약 추천  
+`React · Spring Boot · FastAPI · PostgreSQL · GPT · OCR`
 
-#### ✍️ [Drafty](https://github.com/SxxM131/drafty) · AI 글쓰기 크롬 확장
-선택한 텍스트를 5가지 톤으로 다듬거나, 웹페이지 내용을 요약해 주는 Chrome 확장 프로그램.
+#### 📈 [StocKKnock](https://github.com/SxxM131/stockknock) · AI 주식 분석 `개인 · 개발 중`
 
-#### 🏛️ [minwonAI](https://github.com/SxxM131/minwonAI) · AI 민원 행정 제안
-생성형 AI로 민원 상담·행정 업무를 개선하는 공공 서비스 고도화 제안서 및 설계 자료.
+실시간 시세, GPT 시장 브리핑, 유튜버 영상 요약, 포트폴리오·가격 알림  
+시장 개장 시간만 갱신 · DB 캐시 · 해시 기반 AI 재분석 방지로 비용 최적화  
+`Python · GPT · Yahoo Finance · YouTube API · 뉴스 크롤링`
 
-#### 🔍 [OCRBotTesting](https://github.com/SxxM131/OCRBotTesting) · OCR 자동화
-화면의 한국어 텍스트를 OCR로 읽고 좌표 기반 자동 클릭을 수행하는 Python 봇.
+#### 🎵 Hexa · 허밍 기반 악보 거래 `팀 · 해커톤 3등`
+
+허밍 → Basic Pitch 음표 변환 → GPT 음정 보정 → 화음 편곡 → 악보 거래  
+`TypeScript · Spotify Basic Pitch · GPT`
+
+#### 📅 [SVS Reservation](https://github.com/SxxM131/wos1234) · 예약·배정 웹앱 `개인 · 배포 완료`
+
+게임 커뮤니티 SVS 스케줄 관리. **Min-Cost Max-Flow** 알고리즘으로 공정한 배정  
+`Next.js 14 · Supabase · Vercel`
+
+#### 🏨 [HotelBooker](https://github.com/SxxM131/HotelBooker) · 호텔 예약 시스템 `개인`
+
+예약·결제·리뷰·관리자 대시보드. 복잡한 DB 설계 연습 목적의 풀스택 프로젝트  
+`Spring Boot · React · PostgreSQL · JWT · Swagger`
+
+#### 🐱 AI SNS · 나노바나나 프로 `개인 · 종료`
+
+고양이 3마리 세계여행 컨셉 AI 콘텐츠 계정. 이미지·영상·ASMR 제작  
+캐릭터 일관성 유지가 핵심 과제 · 관련 도구 → [clips](https://github.com/SxxM131/clips)  
+`나노바나나 · Sora · Kling AI · FFmpeg`
 
 ---
+
+
+
+### 📋 프로젝트 한눈에 보기
+
+
+| 프로젝트            | 유형  | 상태      | 핵심 기술                          |
+| --------------- | --- | ------- | ------------------------------ |
+| Re:Cord         | 팀   | 졸업 프로젝트 | OCR, STT, DALL-E, Spring Boot  |
+| Drafty          | 개인  | 스토어 출시  | Chrome Extension, OpenAI       |
+| Med             | 개인  | 배포 완료   | Spring Boot, React, GPT, OCR   |
+| StocKKnock      | 개인  | 개발 중    | Python, GPT, YouTube API       |
+| Hexa            | 팀   | 해커톤 3등  | Basic Pitch, GPT               |
+| SVS Reservation | 개인  | 배포 완료   | Next.js, Supabase, MCMF        |
+| HotelBooker     | 개인  | 개발 완료   | Spring Boot, React, PostgreSQL |
+| AI SNS          | 개인  | 종료      | 나노바나나, Sora, clips             |
+
+
+📄 상세 내용은 [myProjects.md](./myProjects.md)에서 확인할 수 있습니다.
+
+---
+
+
 
 ### 🛠️ 기술 스택
 
-| 분야 | 사용 기술 |
-|------|-----------|
-| Frontend | React, Next.js, TypeScript, Tailwind CSS |
-| Backend | Spring, Python, Node.js |
-| Database | PostgreSQL, Supabase |
-| AI / ML | OpenAI GPT, OCR |
-| Infra | Vercel, Docker |
-| 기타 | Chrome Extension, FFmpeg, Jupyter |
+
+| 분야       | 사용 기술                                                         |
+| -------- | ------------------------------------------------------------- |
+| Language | Java, Python, TypeScript, JavaScript                          |
+| Frontend | React, Next.js, Vite, Tailwind CSS, React Native              |
+| Backend  | Spring Boot, FastAPI, Node.js, Express                        |
+| Database | PostgreSQL, Supabase                                          |
+| AI / ML  | GPT, DALL-E, Whisper, OCR, STT, Basic Pitch, Stable Diffusion |
+| Infra    | Vercel, Render, AWS S3, Docker                                |
+| 기타       | Chrome Extension, FFmpeg, Min-Cost Max-Flow                   |
+
 
 ---
 
-### 📚 학습 & 실험
 
-- **[2025-ewha-spring](https://github.com/SxxM131/2025-ewha-spring)** — 이화여대 Spring 관련 학습 자료
+
+### 💭 개발 철학
+
+1. **문제에서 출발** — Med(동생 알레르기), Drafty(영어 이메일)처럼 실제 불편함이 동기
+2. **API는 초반에 검증** — Re:Cord에서 STT·DALL-E 제약을 뒤늦게 발견한 교훈
+3. **대체 수단 준비** — 외부 API 정책 변경·장애에 대비한 폴백 설계
+4. **비용·운영 고려** — Drafty API 비용, StocKKnock 캐싱으로 기능만큼 운영도 중요
 
 ---
+
+
 
 ### 📫 연락처
 
@@ -69,4 +121,3 @@ Next.js + Supabase + Vercel로 만든 모바일 퍼스트 예약 시스템. **Mi
 
 ---
 
-<!-- GitHub 프로필 README: https://github.com/SxxM131/SxxM131 -->
